@@ -10,8 +10,8 @@ const STORAGE_MSG = 'feedback-msg';
 const STORAGE_EMAIL = 'feedback-email';
 
 refs.form.addEventListener('submit', onFormSubmit);
-refs.textarea.addEventListener('input', onTextareaInput);
-refs.email.addEventListener('input', onEmailInput);
+refs.textarea.addEventListener('input', lodash.throttle(onTextareaInput, 500));
+refs.email.addEventListener('input', lodash.throttle(onEmailInput, 500));
 
 favorite();
 
@@ -23,7 +23,7 @@ function onFormSubmit(e) {
     e.currentTarget.reset();
     localStorage.removeItem(STORAGE_MSG);
     // email saved
-    // localStorage.removeItem(STORAGE_EMAIL);
+    localStorage.removeItem(STORAGE_EMAIL);
 
 }
 
