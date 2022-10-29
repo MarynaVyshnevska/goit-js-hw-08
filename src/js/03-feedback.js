@@ -1,18 +1,24 @@
-import '../css/03-feedback.css';
 import lodash from 'lodash';
+import '../css/03-feedback.css';
+
 
 const refs = {
     form: document.querySelector('.feedback-form'),
     textarea: document.querySelector('.feedback-form textarea'),
     email: document.querySelector('.feedback-form input'),
 };
-const STORAGE_MSG = 'feedback-msg';
+const STORAGE_MSG = 'feedback-message';
 const STORAGE_EMAIL = 'feedback-email';
+const formData = {};
 
 refs.form.addEventListener('submit', onFormSubmit);
 refs.textarea.addEventListener('input', lodash.throttle(onTextareaInput, 500));
 refs.email.addEventListener('input', lodash.throttle(onEmailInput, 500));
+refs.form.addEventListener('input', event => {
 
+    formData[event.target.name] = event.target.value;
+    console.log(formData);
+})
 favorite();
 
 function onFormSubmit(e) { 
@@ -32,14 +38,14 @@ function onFormSubmit(e) {
 // добавить троттл(что б не каждое нажатие а по времени)
 
 function onTextareaInput(e) {
-    const message = e.currentTarget.value;
+    const message = e.target.value;
 
     localStorage.setItem(STORAGE_MSG, message);
     // console.log(message);
 }
 
 function onEmailInput(e) {
-    const subscriberEmail = e.currentTarget.value;
+    const subscriberEmail = e.target.value;
 
     localStorage.setItem(STORAGE_EMAIL, subscriberEmail);
     // console.log(subscriberEmail);

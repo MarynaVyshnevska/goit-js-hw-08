@@ -23,5 +23,5 @@ function setCurrentTime() {
 }
 
 // моя проверка Лодаш
-console.log(lodash.add(1, 2));
-console.log("test for me");
+// console.log(lodash.add(1, 2));
+// console.log("test for me");
